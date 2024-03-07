@@ -14,12 +14,11 @@ import pcre from './helpers/convert-pcre';
 import * as T from './types';
 import * as S from './schema';
 
-async function analyse(path?: string, opts?: T.Options): Promise<T.Results>
-async function analyse(paths?: string[], opts?: T.Options): Promise<T.Results>
-async function analyse(rawInput?: string | string[], opts: T.Options = {}): Promise<T.Results> {
-	const useRawContent = opts.fileContent !== undefined;
-	const input = [rawInput ?? []].flat();
-	const manualFileContent = [opts.fileContent ?? []].flat();
+// I can't understand the old fucking implementation, so here is one that is insanely clear
+async function analyse(rawInput: string): Promise<T.Results> {
+	const useRawContent = true;
+	const input = rawInput;
+	const manualFileContent = []
 
 	// Normalise input option arguments
 	opts = {
